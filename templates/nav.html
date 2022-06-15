@@ -1,61 +1,123 @@
-<header>
-    <!-- Intro settings -->
-    <style>
-        /* Default height for small devices */
-        #intro-example {
-            height: 400px;
-        }
+<!-- Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid justify-content-between">
+        <!-- Left elements -->
+        <div class="d-flex">
+            <!-- Brand -->
+            <ul class="navbar-nav me-2 mb-1 d-flex align-items-center" href="#">
+                <li class="nav-item me-3 me-lg-1 active">
+                    <a class="nav-link" href="#">
+                        <span><i class="fas fa-home fa-lg"></i></span>
+                    </a>
+                </li>
+            </ul>
 
-        /* Height for devices larger than 992px */
-        @media (min-width: 992px) {
-            #intro-example {
-                height: 600px;
-            }
-        }
-    </style>
+            <!-- Search form -->
+            <form class="input-group w-auto my-auto d-none d-sm-flex">
+                <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search"
+                    style="min-width: 125px;" />
+                <span class="input-group-text border-0 d-none d-lg-flex"><i class="fas fa-search"></i></span>
+            </form>
+        </div>
+        <!-- Left elements -->
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
-                aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarExample01">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" aria-current="page" href="#">Home</a>
+        <!-- Center elements -->
+        <ul class="navbar-nav flex-row d-none d-md-flex">
+
+            <li class="nav-item me-3 me-lg-1">
+                <a class="nav-link" href="#">
+                    <span><i class="fas fa-flag fa-lg"></i></span>
+                </a>
+            </li>
+
+            <li class="nav-item me-3 me-lg-1">
+                <a class="nav-link" href="#">
+                    <span><i class="fas fa-video fa-lg"></i></span>
+                </a>
+            </li>
+
+            <li class="nav-item me-3 me-lg-1">
+                <a class="nav-link" href="#">
+                    <span><i class="fas fa-shopping-bag fa-lg"></i></span>
+                </a>
+            </li>
+
+            <li class="nav-item me-3 me-lg-1">
+                <a class="nav-link" href="#">
+                    <span><i class="fas fa-users fa-lg"></i></span>
+                    <span class="badge rounded-pill badge-notification bg-danger">2</span>
+                </a>
+            </li>
+        </ul>
+        <!-- Center elements -->
+
+        <!-- Right elements -->
+        <ul class="navbar-nav flex-row">
+            <li class="nav-item me-3 me-lg-1">
+                <a class="nav-link d-sm-flex align-items-sm-center" href="#">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" class="rounded-circle" height="22"
+                        alt="Black and White Portrait of a Man" loading="lazy" />
+                    <strong class="d-none d-sm-block ms-1">John</strong>
+                </a>
+            </li>
+            <li class="nav-item me-3 me-lg-1">
+                <a class="nav-link" href="#">
+                    <span><i class="fas fa-plus-circle fa-lg"></i></span>
+                </a>
+            </li>
+            <li class="nav-item dropdown me-3 me-lg-1">
+                <a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-mdb-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-comments fa-lg"></i>
+
+                    <span class="badge rounded-pill badge-notification bg-danger">6</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                    <li>
+                        <a class="dropdown-item" href="#">LogIn</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                    <li>
+                        <a class="dropdown-item" href="#">Logout</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                    <li>
+                        <a class="dropdown-item" href="#">Something else here</a>
                     </li>
                 </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Navbar -->
-
-    <!-- Background image -->
-    <div id="intro-example" class="p-5 text-center bg-image"
-        style="background-image: url('https://media.istockphoto.com/photos/najac-united-kingdom-picture-id888740426?b=1&k=20&m=888740426&s=612x612&w=0&h=rNzqUlHXstE2FHFkzHasO334kF1zQHkCfvC3tWsjOKg=');">
-        <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
-            <div class="d-flex justify-content-center align-items-center h-100">
-                <div class="text-white">
-                    <h1 class="mb-3">Explore your area</h1>
-                    <h5 class="mb-4">Come say hello to newbies, swap recommendations, and catch up on local news.Bienvenue, voisin.</h5>
-                    <a class="btn btn-outline-light btn-lg m-2" href=""
-                        role="button" rel="nofollow" target="_blank">Login</a>
-                    <a class="btn btn-outline-light btn-lg m-2" href=""
-                        target="_blank" role="button">Signup</a>
-                </div>
-            </div>
-        </div>
+            </li>
+            <li class="nav-item dropdown me-3 me-lg-1">
+                <a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-mdb-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-bell fa-lg"></i>
+                    <span class="badge rounded-pill badge-notification bg-danger">12</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                    <li>
+                        <a class="dropdown-item" href="#">Some news</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Another news</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown me-3 me-lg-1">
+                <a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-mdb-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-chevron-circle-down fa-lg"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                    <li>
+                        <a class="dropdown-item" href="#">LogIn</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- Right elements -->
     </div>
-    <!-- Background image -->
-</header>
+</nav>
+<!-- Navbar -->
