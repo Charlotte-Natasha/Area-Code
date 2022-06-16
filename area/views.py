@@ -17,3 +17,7 @@ def sign_up(request):
 
     # else:  
         return render(request, 'registration/signup.html', {})      
+
+def profile(request):
+
+    return render(request, 'area/profile.html')        
