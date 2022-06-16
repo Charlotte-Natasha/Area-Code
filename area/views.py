@@ -34,5 +34,5 @@ def editprofile(request):
         return redirect('profile')
     else:
         form = ProfileForm()
-    return render(request, 'wardapp/editprofile.html', {'form':form})  
+    return render(request, 'area/editprofile.html', {'form':form})  
             
