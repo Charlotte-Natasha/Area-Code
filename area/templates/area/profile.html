@@ -7,21 +7,21 @@
         <div class="col-md-3"></div>
 
         <div class="zoom view view-cascade" style="padding: 5% ">
-            <img class="rounded-circle account-img d-block mx-auto img-thumbnail" src=""
+            <img class="rounded-circle account-img d-block mx-auto img-thumbnail" src="{{ user.profile.profile_picture.url }}"
                 alt="Card image cap" height="125px" width="125px" style="margin-top: 4%">
-            <h5 class="text-center mt-3 h3"></h5>
-            <p class="text-center h5"> </p>
+            <h5 class="text-center mt-3 h3">{{ user.username }}</h5>
+            <p class="text-center h5">{{ profile.created_at }}</p>
             <div class="card-block">
-                <p class="card-text text-center"></p>
+                <p class="card-text text-center">{{ profile.bio }}</p>
 
             </div>
             
-                <p class="text-center"> My Hood
-                    <a class="btn btn-large rounded-pill" href="/areahood"></a>
+                <p class="text-center"> 
+                    <a class="btn btn-large btn-success rounded-pill" href="/areahood">My Hood</a>
                 </p>
 
-                <p class="text-center"> Edit Profile
-                    <a class="btn btn-large rounded-pill" href="/editprofile"></a>
+                <p class="text-center"> 
+                    <a class="btn btn-large btn-success rounded-pill" href="/editprofile">Edit Profile</a>
                 </p>
             
         </div>
