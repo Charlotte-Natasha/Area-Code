@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import *
+from django.contrib import messages
+from .forms import *
 
 def index(request):
 
@@ -23,5 +26,13 @@ def profile(request):
     return render(request, 'area/profile.html')  
 
 def editprofile(request):
-
-    return render(request, 'area/editprofile.html')            
+    if request.method == 'POST':
+        # logged_user = Profile.objects.get(prof_user=request.user)
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+        return redirect('profile')
+    else:
+        form = ProfileForm()
+    return render(request, 'wardapp/editprofile.html', {'form':form})  
+            

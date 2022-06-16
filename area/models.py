@@ -7,6 +7,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     profile_picture = models.ImageField(null=True, blank=True, upload_to='profilepics')
     bio = models.TextField()
+    location = models.CharField(max_length=30, default="", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
