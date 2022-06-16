@@ -20,4 +20,8 @@ def sign_up(request):
 
 def profile(request):
 
-    return render(request, 'area/profile.html')        
+    return render(request, 'area/profile.html')  
+
+def editprofile(request):
+
+    return render(request, 'area/editprofile.html')            
