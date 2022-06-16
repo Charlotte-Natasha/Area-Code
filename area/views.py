@@ -38,4 +38,8 @@ def editprofile(request):
             
 def areahood(request):
 
-    return render(request, 'area/areahood.html')             
+    return render(request, 'area/areahood.html')  
+
+def business(request):
+
+    return render(request, 'area/business.html')                 
