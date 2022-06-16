@@ -36,3 +36,6 @@ def editprofile(request):
         form = ProfileForm()
     return render(request, 'area/editprofile.html', {'form':form})  
             
+def areahood(request):
+
+    return render(request, 'area/areahood.html')             
