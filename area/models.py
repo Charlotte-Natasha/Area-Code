@@ -23,6 +23,58 @@ class Profile(models.Model):
     def search_profile(cls, name):
         return cls.objects.filter(user__username__icontains=name).all()
 
+class NeighborHood(models.Model):
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    population = models.IntegerField()
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='hood', default=None, null=True)
+    image = models.ImageField(null=True, blank=True, upload_to='profilepics')
+    description = models.TextField()
+    police = models.IntegerField()
+    health = models.IntegerField()
+    education = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+    def create_neighborhood(self):
+        self.save()
+
+    def delete_neighborhood(self):
+        self.delete()
+
+    @classmethod
+    def find_neighborhood(cls, neighborhood_id):
+        return cls.objects.filter(id=neighborhood_id)
+
+    @classmethod
+    def update_neighborhood(cls, id, name, location, population, description, police, health, education):
+        cls.objects.filter(id=id).update(name=name, location=location, population=population, description=description,police=police, health=health, education=education)
+
+    @classmethod
+    def get_all_neighborhoods(cls):
+        all_neighborhoods = cls.objects.all()
+        return all_neighborhoods[::-1]
+
+    @classmethod
+    def get_neighborhood_by_name(cls, name):
+        return cls.objects.filter(name=name)
+
+    @classmethod
+    def get_neighborhood_by_location(cls, location):
+        return cls.objects.filter(location=location)
+
+    @classmethod
+    def get_neighborhood_by_population(cls, population):
+        return cls.objects.filter(population=population)
+
+    @classmethod
+    def get_neighborhood_by_description(cls, description):
+        return cls.objects.filter(description=description)
+
+    @classmethod
+    def get_neighborhood_by_police(cls, police):
+        return cls.objects.filter(police=police)
 class Post(models.Model):
     title = models.CharField(max_length=100, null=True)
     post = models.TextField()
