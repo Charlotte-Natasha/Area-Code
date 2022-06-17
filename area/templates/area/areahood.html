@@ -1,5 +1,36 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
+<div class="container" style="margin-top: 10%">
+    <a href="{% url 'add-hood' %}" class="btn btn-sm rounded-pill peach-gradient mb-2"> Add Hood</a>
+    <div class="row">
+        {% for hood in all_neighborhoods %}
+            <div class="col-md-4 card card-cascade narrower juicy-peach-gradient" style="margin: 5%; padding-right: 10%">
+                <div class="card mb-4 view view-cascade overlay" style="min-height:400px;min-width: 250px; border-radius: 8%">
+                    <a href="{% url 'hood_details' hood.id  %}" > <img src="{{ hood.hood_logo.url }}" class="card-img-top" alt="{{ hood.name }}"> </a>
+                    <div class="card-body">
+                        <h5 class="card-title h5">{{ hood.name| title }}  ({{hood.location}})
+
+                            <a href="{%  url 'members' hood.id %}"> <span class="ml-4 text-center  badge badge-pill badge-success">{{hood.members.count}} member{{hood.members.count|pluralize}}</span> </a>
+                            <a href="{%  url 'business' hood.id %}"> <span class="ml-4 text-center  badge badge-pill badge-info">{{hood.business.count}} Business{{hood.business.count|pluralize}}</span> </a>
+                        </h5>
+                        <h5 class="card-title h5">
+
+                        </h5>
+                        <p class="card-text black-text text-capitalize">{{hood.description}}</p>
+                        {% if request.user.userprofile.neighborhood == hood %}
+                            <a href="{% url 'leave-hood' hood.id %}" class="btn rounded-pill btn-reddit btn-sm">Leave Hood</a>
+                        {% elif not request.user.userprofile.neighborhood %}
+                            <a href="{% url 'join-hood' hood.id %}" class="btn rounded-pill btn-cyan btn-sm">Join Hood</a>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

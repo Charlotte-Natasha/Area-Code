@@ -36,9 +36,11 @@ def editprofile(request):
     return render(request, 'area/editprofile.html', {'form':form})  
             
 def areahood(request):
-
-    return render(request, 'area/areahood.html')  
+    all_neighborhoods = Neighborhood.get_all_neighborhoods()
+    print(all_neighborhoods)
+    return render(request, 'area/areahood.html', {'all_neighborhoods': all_neighborhoods})  
 
 def business(request):
 
-    return render(request, 'area/business.html')                 
+    return render(request, 'area/business.html')   
+                    
