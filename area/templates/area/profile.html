@@ -7,9 +7,9 @@
         <div class="col-md-3"></div>
 
         <div class="zoom view view-cascade" style="padding: 5% ">
-            <img class="rounded-circle account-img d-block mx-auto img-thumbnail" src="{{ user.profile_picture.url }}"
+            <img class="rounded-circle account-img d-block mx-auto img-thumbnail" src="{{ profile.profile_picture.url }}"
                 alt="Card image cap" height="125px" width="125px" style="margin-top: 4%">
-            <h5 class="text-center mt-3 h3">{{ user.username }}</h5>
+            <h5 class="text-center mt-3 h3">{{ profile.user.username }}</h5>
             <p class="text-center h5">{{ profile.created_at }}</p>
             <div class="card-block">
                 <p class="card-text text-center">{{ profile.bio }}</p>

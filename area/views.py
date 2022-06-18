@@ -24,7 +24,7 @@ def profile(request):
     user = request.user
     profile = Profile.objects.get( user = user)
 
-    return render(request, 'area/profile.html', {'profile':profile})  
+    return render(request, 'area/profile.html', {'profile':profile, 'user':user})  
 
 def editprofile(request):
     if request.method == 'POST':
