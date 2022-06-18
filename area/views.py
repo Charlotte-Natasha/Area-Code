@@ -42,8 +42,9 @@ def areahood(request):
     return render(request, 'area/areahood.html', {'all_neighborhoods': all_neighborhoods})  
 
 def business(request):
+    business = Business.objects.all()
 
-    return render(request, 'area/business.html')  
+    return render(request, 'area/business.html', {'business':business})  
 
 def new_business(request):
     current_user = request.user
