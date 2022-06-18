@@ -64,15 +64,25 @@ def new_business(request):
     return render(request, 'area/new-business.html', {"form": form}) 
 
 def addhood(request):
+    # form = AddhoodForm()
+    current_user = request.user
+    profile = Profile.objects.get(user = current_user)
     if request.method == "POST":
         form = AddhoodForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            # hood = form.save(commit=False)
-            # hood.admin = request.user.userprofile
-            # hood.save()
-        return redirect('areahood')
-    else: 
-        form = AddhoodForm()        
-    return render(request, 'area/addhood.html')         
+            project = form.save(commit=False)
+            project.user = profile
+            # project.user_profile = profile
+            project.save()
+            # name = form.cleaned_data['name']
+            # location = form.cleaned_data['location']
+            # image = form.cleaned_data['image']
+            # data = Neighborhood.objects.create(
+            #     name=name, user=request.user, location=location, image=image)
+            # data.save()
+            return redirect('areahood')
+    # context = {'form': form}   
+    else:
+        form = AddhoodForm()     
+    return render(request, 'area/addhood.html', {'form':form})         
                     

@@ -23,9 +23,9 @@
                         </h5>
                         <p class="card-text black-text text-capitalize">{{hood.description}}</p>
                         {% if request.user.user.neighborhood == hood %}
-                            <a href="" class="btn rounded-pill btn-reddit btn-sm">Leave Hood</a>
+                            <a href="" class="btn rounded-pill btn-secondary btn-sm">Leave Hood</a>
                         {% elif not request.user.user.neighborhood %}
-                            <a href="" class="btn rounded-pill btn-cyan btn-sm">Join Hood</a>
+                            <a href="" class="btn rounded-pill btn-success btn-sm">Join Hood</a>
                         {% endif %}
                     </div>
 
