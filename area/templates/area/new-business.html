@@ -1,9 +1,8 @@
-{% extends 'layout.html' %}
+{% extends 'base.html' %}
 
 {% load crispy_forms_tags %}
 
 {% block content%}
-
 
 <div class="jumbotron jumbotron-fluid bg-info pb-3 pt-4">
 
@@ -16,12 +15,13 @@
         <div class="col-lg-3"></div>
 
         <div class="col-lg-6 pt-2 ">
-            <form action="{%url 'new-business'%}" method="post" enctype="multipart/form-data">
-                {%csrf_token%}
+            <form action="{%url 'new_business'%}" method="post" enctype="multipart/form-data">
 
-                {% form | crispy %}
+                {% csrf_token %}
+
+                {{ form | crispy }}
                 
-                <small>Can't find your neighborhood? You can add a Neighborhood in your <a href="/accounts/profile/">
+                <small>Can't find your neighborhood? You can add a Neighborhood in your <a href="">
                         Profile page</a>. </small> <br>
                 <input type="submit" class="btn btn-success btn-lg font-weight-bold" value="SUBMIT">
             </form>
@@ -31,4 +31,5 @@
 
     </div>
 </div>
+
 {% endblock %}

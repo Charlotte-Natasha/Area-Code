@@ -19,9 +19,6 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()    
 
-    @classmethod
-    def search_profile(cls, name):
-        return cls.objects.filter(user__username__icontains=name).all()
 
 class Neighborhood(models.Model):
     name = models.CharField(max_length=100)
@@ -39,30 +36,6 @@ class Neighborhood(models.Model):
     def delete_neighborhood(self):
         self.delete()
 
-    @classmethod
-    def find_neighborhood(cls, neighborhood_id):
-        return cls.objects.filter(id=neighborhood_id)
-
-    @classmethod
-    def update_neighborhood(cls, id, name, location, population, description, police, health, education):
-        cls.objects.filter(id=id).update(name=name, location=location, description=description)
-
-    @classmethod
-    def get_all_neighborhoods(cls):
-        all_neighborhoods = cls.objects.all()
-        return all_neighborhoods[::-1]
-
-    @classmethod
-    def get_neighborhood_by_name(cls, name):
-        return cls.objects.filter(name=name)
-
-    @classmethod
-    def get_neighborhood_by_location(cls, location):
-        return cls.objects.filter(location=location)
-
-    @classmethod
-    def get_neighborhood_by_description(cls, description):
-        return cls.objects.filter(description=description)
 
 class Post(models.Model):
     title = models.CharField(max_length=100, null=True)
@@ -76,43 +49,11 @@ class Post(models.Model):
     def save_post(self):
         self.save()
 
-    @classmethod
-    def get_post_by_id(cls, id):
-        return cls.objects.filter(id=id)
-
-    @classmethod
-    def get_post_by_user(cls, user):
-        return cls.objects.filter(user=user)
-
-    @classmethod
-    def get_post_by_hood(cls, hood):
-        return cls.objects.filter(hood=hood)
-
-    @classmethod
-    def get_post_by_title(cls, title):
-        return cls.objects.filter(title=title)
-
-    @classmethod
-    def get_post_by_post(cls, post):
-        return cls.objects.filter(post=post)
-
-    @classmethod
-    def get_post_by_date(cls, date):
-        return cls.objects.filter(date=date)
-
-    def delete_post(self):
-        self.delete()
-
-    @classmethod
-    def get_posts_by_neighborhood(cls, hood):
-        hood_posts = cls.objects.filter(hood=hood)
-        return hood_posts[::-1]
 
 class Business(models.Model):
     name = models.CharField(max_length=120)
-    email = models.EmailField(max_length=254)
     description = models.TextField(blank=True)
-    # neighborhood = models.ForeignKey(NeighborHood, on_delete=models.CASCADE, related_name='business', null=True)
+    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, related_name='business', null=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
     business_logo = models.ImageField(null=True, blank=True, upload_to='images')
 
@@ -122,25 +63,6 @@ class Business(models.Model):
     def delete_business(self):
         self.delete()
 
-    @classmethod
-    def search_business(cls, name):
-        return cls.objects.filter(name__icontains=name).all()
-
-    @classmethod
-    def get_business_by_id(cls, id):
-        return cls.objects.filter(id=id)
-
-    @classmethod
-    def get_business_by_name(cls, name):
-        return cls.objects.filter(name=name)
-
-    @classmethod
-    def get_business_by_neighborhood(cls, neighborhood):
-        return cls.objects.filter(neighborhood_id=neighborhood).all()
-
-    @classmethod
-    def get_business_by_email(cls, email):
-        return cls.objects.filter(email=email)
 
     def __str__(self):
         return f'{self.name} Business'

@@ -21,12 +21,13 @@ def sign_up(request):
         return render(request, 'registration/signup.html', {})      
 
 def profile(request):
+    user = request.user
+    profile = Profile.objects.get( user = user)
 
-    return render(request, 'area/profile.html')  
+    return render(request, 'area/profile.html', {'profile':profile})  
 
 def editprofile(request):
     if request.method == 'POST':
-        # logged_user = Profile.objects.get(prof_user=request.user)
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
@@ -36,7 +37,7 @@ def editprofile(request):
     return render(request, 'area/editprofile.html', {'form':form})  
             
 def areahood(request):
-    all_neighborhoods = Neighborhood.get_all_neighborhoods()
+    all_neighborhoods = Neighborhood.objects.all()
     print(all_neighborhoods)
     return render(request, 'area/areahood.html', {'all_neighborhoods': all_neighborhoods})  
 
@@ -46,18 +47,18 @@ def business(request):
 
 def new_business(request):
     current_user = request.user
-    profile = request.user.profile
+    profile = Profile.objects.get(user = current_user)
 
     if request.method == 'POST':
         form = NewBusinessForm(request.POST, request.FILES)
         if form.is_valid():
             project = form.save(commit=False)
-            project.Admin = current_user
-            project.admin_profile = profile
+            project.user = profile
+            # project.user_profile = profile
             project.save()
-        return redirect('index')
+        return redirect('business')
 
     else:
         form = NewBusinessForm()
-    return render(request, 'new-business.html', {"form": form})     
+    return render(request, 'area/new-business.html', {"form": form})     
                     
