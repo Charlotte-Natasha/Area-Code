@@ -8,7 +8,7 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = '__all__'
 
-class Neighborhood(forms.ModelForm):
+class NeighborhoodForm(forms.ModelForm):
     class Meta:
         model = Neighborhood
         fields = '__all__'  
