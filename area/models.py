@@ -26,7 +26,6 @@ class Profile(models.Model):
 class Neighborhood(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
-    population = models.IntegerField()
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='hood', default=None, null=True)
     image = models.ImageField(null=True, blank=True, upload_to='profilepics')
     description = models.TextField()
@@ -107,4 +106,41 @@ class Post(models.Model):
     @classmethod
     def get_posts_by_neighborhood(cls, hood):
         hood_posts = cls.objects.filter(hood=hood)
-        return hood_posts[::-1]        
+        return hood_posts[::-1]
+
+class Business(models.Model):
+    name = models.CharField(max_length=120)
+    email = models.EmailField(max_length=254)
+    description = models.TextField(blank=True)
+    # neighborhood = models.ForeignKey(NeighborHood, on_delete=models.CASCADE, related_name='business', null=True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
+    business_logo = models.ImageField(null=True, blank=True, upload_to='images')
+
+    def create_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+    @classmethod
+    def search_business(cls, name):
+        return cls.objects.filter(name__icontains=name).all()
+
+    @classmethod
+    def get_business_by_id(cls, id):
+        return cls.objects.filter(id=id)
+
+    @classmethod
+    def get_business_by_name(cls, name):
+        return cls.objects.filter(name=name)
+
+    @classmethod
+    def get_business_by_neighborhood(cls, neighborhood):
+        return cls.objects.filter(neighborhood_id=neighborhood).all()
+
+    @classmethod
+    def get_business_by_email(cls, email):
+        return cls.objects.filter(email=email)
+
+    def __str__(self):
+        return f'{self.name} Business'
