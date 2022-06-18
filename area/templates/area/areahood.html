@@ -5,11 +5,12 @@
 {% block content %}
 
 <div class="container">
-    
+    <a href="{% url 'addhood' %}" class="btn btn-success mt-4">Add Hood </a>
+
     <div class="row">
         {% for hood in all_neighborhoods %}
-            <div class="col-md-4 card card-cascade narrower" style="margin: 5%; padding-right: 10%; background-color: aqua;">
-                <div class="card mb-4 view view-cascade overlay mt-3">
+            <div class="col-md-4 " style="margin: 5%; padding-right: 5%; background-color: aqua; padding-left: 5%;">
+                <div class="card mb-4 mt-3 ">
                     <a href="" > <img src="{{ hood.image.url }}" class="card-img-top" alt="{{ hood.name }}"> </a>
                     <div class="card-body">
                         <h5 class="card-title h5">{{ hood.name| title }}  ({{hood.location}})

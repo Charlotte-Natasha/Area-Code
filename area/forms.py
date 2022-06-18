@@ -22,3 +22,7 @@ class NewBusinessForm(forms.ModelForm):
         # 'address': forms.Textarea(attrs={'rows':1, 'cols':10,}),
         # }              
 
+class AddhoodForm(forms.ModelForm):
+    class Meta:
+        model = Neighborhood
+        fields = '__all__'

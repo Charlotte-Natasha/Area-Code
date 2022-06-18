@@ -61,5 +61,18 @@ def new_business(request):
 
     else:
         form = NewBusinessForm()
-    return render(request, 'area/new-business.html', {"form": form})     
+    return render(request, 'area/new-business.html', {"form": form}) 
+
+def addhood(request):
+    if request.method == "POST":
+        form = AddhoodForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # hood = form.save(commit=False)
+            # hood.admin = request.user.userprofile
+            # hood.save()
+        return redirect('areahood')
+    else: 
+        form = AddhoodForm()        
+    return render(request, 'area/addhood.html')         
                     
