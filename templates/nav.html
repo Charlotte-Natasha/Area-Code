@@ -59,15 +59,18 @@
                     <i class="fas fa-chevron-circle-down text-black fa-lg"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="navbarDropdownMenuLink">
+                    {% if user.is_authenticated%}
                     <li>
-                        <a class="dropdown-item" href="{% url 'signup' %}">Signup</a>
+                        <a class="dropdown-item" href="{% url 'profile' %}">{{request.user}}</a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'logout' %}">LogOut</a>
+                    </li>
+                    {% else %}
                     <li>
                         <a class="dropdown-item" href="{% url 'login' %}">LogIn</a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Logout</a>
-                    </li>
+                    {% endif %}
                 </ul>
             </li>
         </ul>
