@@ -10,7 +10,7 @@
         <div class="col-md-4 z-depth-2">
             <div class="card">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                    <img src="{{ business.business_logo.url }}" class="img-fluid" />
+                    <img src="{{ business.business_logo.url }}" class="img-fluid" style="width: 50%;" />
                     <a href="#!">
                         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </a>
@@ -18,9 +18,12 @@
                 <div class="card-body">
                     <h5 class="card-title fw-bold"> {{business.name}}</h5>
                     <p class="card-text">{{business.description}}</p>
-                    <a href="#!" class="btn btn-success">Edit details</a>
                 </div>
-            </div>    
+                <div class="card-footer">
+                    <p class="card-text">{{business.user}}</p>
+                    <p class="card-text">{{business.neighborhood}}</p>
+                </div> 
+            </div>
         </div>
         {% endfor %}
     </div>
