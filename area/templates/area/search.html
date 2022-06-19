@@ -1,47 +1,30 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
 
-{%block body%}
-
-
-<div class="page-heading">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="header-text">
-                    <h2>Search Results </h2>
-                    <div class="div-dec"></div>
+{% block content %}
+    <div class="container" style="margin-top:7%">
+        {% if businesses %}
+            <h5 class="text-white">Found {{results.count}} Business{{results.count|pluralize}}</h5>
+            <div class="row">
+                <div class="col-md-4">
+                    {% for b in businesses %}
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title h3">{{b.name| title}}
+                                </h5>
+                                <p class="card-text">{{b.description}}</p>
+                                <p class="card-text">Owner: <small class="text-muted">
+                                    {{ b.user.user.username|title }}</small></p>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
+                {% else %}
+                <h4 class="text-white">Found 0 Business with the name you searched </h4>
             </div>
-        </div>
+        {% endif %}
     </div>
-</div>
-
-
-<section class="services" id="services">
-    <div class="container">
-        <div class="">
-            {%if business %}
-            <div class="">
-                <div class="mb-3">
-                    {%for business in business %}
-                    <p class="mb-3">
-                    <h6>{{business.name | capfirst}}</h6>
-                    <br> {{business.owner | capfirst}}
-                    <br> {{business.location | capfirst}}
-                    <br> {{business.contact}}
-                    <br> <small class="text-muted">active since {{business.created | timesince}}</small>
-                    </p>
-                    {%endfor%}
-                </div>
-            </div>
-            {%else%}
-            <div class="fs-3 text-center m-5 p-5">
-                Sorry we haven't found any matching results for your search!
-            </div>
-            {%endif%}
-        </div>
     </div>
-</section>
 
-{%endblock%}
+{% endblock %}

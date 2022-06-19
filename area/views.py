@@ -105,11 +105,15 @@ def leave_hood(request, id):
     return redirect('neighborhood')
 
 def search(request):
-    query  = request.GET.get('query')
-    if query:
-        business = Business.objects.filter(
-            Q(name__icontains=query) | 
-            Q(owner__owner__username__icontains=query)
-        )
-    ctx = {'business': business}
-    return render(request, 'area/search.html', ctx)    
+    if 'business' in request.GET and request.GET["business"]:
+        search_term = request.GET.get("business")
+        searched_business = Business.search_business(search_term)
+        message = f"{search_term}"
+        params = {
+            'message': message,
+            'businesses': searched_business
+        }
+        return render(request, 'z_neighborhood/search.html', params)
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'area/search.html', {'message': message}) 
