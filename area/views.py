@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.decorators import login_required
 from .forms import *
+from django.db.models import Q
 
 def index(request):
-    
+
     return render(request, 'area/index.html')
 
 def sign_up(request):
@@ -102,3 +103,13 @@ def leave_hood(request, id):
     request.user.userprofile.neighborhood = None
     request.user.userprofile.save()
     return redirect('neighborhood')
+
+def search(request):
+    query  = request.GET.get('query')
+    if query:
+        business = Business.objects.filter(
+            Q(name__icontains=query) | 
+            Q(owner__owner__username__icontains=query)
+        )
+    ctx = {'business': business}
+    return render(request, 'area/search.html', ctx)    

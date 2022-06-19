@@ -11,4 +11,5 @@ urlpatterns = [
     path('business/', views.business, name='business'),
     path('new_business/', views.new_business, name='new_business'),
     path('addhood/', views.addhood, name='addhood'),
+    path('search/', views.search, name='search'),
 ]
