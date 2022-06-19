@@ -55,7 +55,7 @@ def new_business(request):
         if form.is_valid():
             project = form.save(commit=False)
             project.user = profile
-            # project.user_profile = profile
+            project.user_profile = profile
             project.save()
         return redirect('business')
 
