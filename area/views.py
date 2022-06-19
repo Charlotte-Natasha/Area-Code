@@ -117,3 +117,7 @@ def search(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'area/search.html', {'message': message}) 
+
+def posts(request):
+
+    return render(request, 'area/posts.html')        
