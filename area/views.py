@@ -69,7 +69,6 @@ def new_business(request):
     return render(request, 'area/new-business.html', {"form": form}) 
 
 def addhood(request):
-    # form = AddhoodForm()
     current_user = request.user
     profile = Profile.objects.get(user = current_user)
     if request.method == "POST":
@@ -77,17 +76,15 @@ def addhood(request):
         if form.is_valid():
             project = form.save(commit=False)
             project.user = profile
-            # project.user_profile = profile
             project.save()
-            # name = form.cleaned_data['name']
-            # location = form.cleaned_data['location']
-            # image = form.cleaned_data['image']
-            # data = Neighborhood.objects.create(
-            #     name=name, user=request.user, location=location, image=image)
-            # data.save()
+            
             return redirect('areahood')
-    # context = {'form': form}   
     else:
         form = AddhoodForm()     
     return render(request, 'area/addhood.html', {'form':form})         
-                    
+
+def join_hood(request, id):
+    neighborhood = Neighborhood.objects.get()
+    request.user.userprofile.neighborhood = neighborhood
+    request.user.userprofile.save()
+    return redirect('neighborhood')                    
